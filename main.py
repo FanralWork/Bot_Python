@@ -33,13 +33,12 @@ GameGuru - 699 рублей - https://store.steampowered.com/app/266310/GameGuru
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
-    bot.send_message(message.chat.id, "Я не знаю такой команды.")
+        if message.text == "я тоже не знаю" or message.text == "Я тоже не знаю":
+            bot.send_message(message.chat.id, "Приятно познакомится, собрат по разуму")
+        else: bot.send_message(message.chat.id, "Я не знаю такой команды.")
 #Ответ на бред#
 
-@bot.message_handler(content_types=["text"])
-def handle_text(message):
-    if message.text == "я тоже не знаю" or message.text == "Я тоже не знаю":
-        bot.send_message(message.chat.id, "Приятно познакомится, собрат по разуму")
+
 #пасхалка#
 
 bot.polling(none_stop=True, interval=0)
