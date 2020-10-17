@@ -9,10 +9,8 @@ def handle_text(message):
 
 @bot.message_handler(commands=["info"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Версия бота:
-/games - Купить игры
-/programs - купить программы""")
-#Все команды#
+    bot.send_message(message.chat.id, """Версия бота: 1.2""")
+#информация#
 
 @bot.message_handler(commands=["help"])
 def handle_text(message):
@@ -37,5 +35,11 @@ GameGuru - 699 рублей - https://store.steampowered.com/app/266310/GameGuru
 def handle_text(message):
     bot.send_message(message.chat.id, "Я не знаю такой команды.")
 #Ответ на бред#
+
+@bot.message_handler(content_types=["text"])
+def handle_text(message):
+    if message.text == "я тоже не знаю" or message.text == "Я тоже не знаю":
+        bot.send_message(message.chat.id, "Приятно познакомится, собрат по разуму")
+#пасхалка#
 
 bot.polling(none_stop=True, interval=0)
