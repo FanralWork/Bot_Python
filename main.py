@@ -9,7 +9,7 @@ def handle_text(message):
 
 @bot.message_handler(commands=["info"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Версия бота: 1.2""")
+    bot.send_message(message.chat.id, """Версия бота: 1.3""")
 #информация#
 
 @bot.message_handler(commands=["help"])
