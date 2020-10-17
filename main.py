@@ -5,6 +5,8 @@ bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 def handle_text(message):
     bot.send_message(message.chat.id, """Привет я Хоттабыч. Я могу помочь тебе купить игры со скидкой,
 чтобы узнать мои команды введи /help""")
+    sti = open ('static/hello.webp')
+    bot.sent_sticker(message.chat.id, sti)
 #Приветствие#
 
 @bot.message_handler(commands=["info"])
