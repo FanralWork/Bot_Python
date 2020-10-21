@@ -31,14 +31,15 @@ def handle_text(message):
 
 @bot.message_handler(commands=["games"])
 def handle_text(message):
+    bot.send_message(message.chat.id, """Все игры:
+Garry's Mod - 249 рублей""", reply_markup = markup)
+
     markup = types.InlineKeyboardMarkup(row_width=2)
     item1 = types.InlineKeyboardButton("Купить", callback_data='Link_Buy_Garrys_Mod')
     item1 = types.InlineKeyboardButton("Перейти в магазин", callback_data='Link_Garrys_Mod')
 
     markup.add(item1, item2)
-    bot.send_message(message.chat.id, """Все игры:
-Garry's Mod - 249 рублей""", reply_markup=markup)
-#Игры#
+    #Игры#
 
 @bot.message_handler(commands=["programs"])
 def handle_text(message):
@@ -54,3 +55,21 @@ def handle_text(message):
 #Ответ на бред#
 
 bot.polling(none_stop=True, interval=0)
+
+
+@bot.message_handler(content_types=['text'])
+def lalala(message):
+    if message.chat.type == 'private':
+        if message.text == '123':
+            bot.send_message(message.chat.id, str(random.randint(0,100)))
+        elif message.text == '567':
+
+            markup = types.InlineKeyboardMarkup(row_width=2)
+            item1 = types.InlineKeyboardButton("Хорошо", callback_data='good')
+            item2 = types.InlineKeyboardButton("Не очень", callback_data='bad')
+
+            markup.add(item1, item2)
+
+            bot.send_message(message.chat.id, 'Отлично, сам как?', reply_markup=markup)
+        else:
+            bot.send_message(message.chat.id, 'Я не знаю что ответить 😢')
