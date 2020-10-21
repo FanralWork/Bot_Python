@@ -3,15 +3,15 @@ bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 
 @bot.message_handler(commands=["start"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Привет я Хоттабыч. Я могу помочь тебе купить игры со скидкой,
-чтобы узнать мои команды введи /help""")
     bot.send_photo(message.chat.id, 'http://memok.net/uploads/2015/10/24/562c19b19826a.jpg')
-#Приветствие#
 def heandle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
     user_markup.row("/start", "/stop")
     user_markup.row("Помощь", "Информация о боте")
     user_markup.row("Игры", "Программы")
+    bot.send_message(message.chat.id, """Привет я Хоттабыч. Я могу помочь тебе купить игры со скидкой,
+чтобы узнать мои команды введи /help""")
+#Приветствие#
 
 @bot.message_handler(commands=["stop"])
 def heandle_stop(message):
