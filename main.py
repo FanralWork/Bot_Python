@@ -31,13 +31,13 @@ def handle_text(message):
 
 @bot.message_handler(commands=["games"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Все игры:
-Garry's Mod - 249 рублей""", reply_markup=markup)
     markup = types.InlineKeyboardMarkup(row_width=2)
     item1 = types.InlineKeyboardButton("Купить", callback_data='Link_Buy_Garrys_Mod')
     item1 = types.InlineKeyboardButton("Перейти в магазин", callback_data='Link_Garrys_Mod')
 
     markup.add(item1, item2)
+    bot.send_message(message.chat.id, """Все игры:
+Garry's Mod - 249 рублей""", reply_markup=markup)
 #Игры#
 
 @bot.message_handler(commands=["programs"])
