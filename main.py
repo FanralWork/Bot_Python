@@ -5,8 +5,8 @@ bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 def heandle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
     user_markup.row("/start", "/stop")
-    user_markup.row("Помощь", "Информация о боте")
-    user_markup.row("Игры", "Программы")
+    user_markup.row("/help", "/info")
+    user_markup.row("/games", "/programs")
     bot.send_message(message.chat.id, """Привет я Хоттабыч. Я могу помочь тебе купить игры со скидкой,
 чтобы узнать мои команды введи /help""", reply_markup=user_markup)
     bot.send_photo(message.chat.id, 'http://memok.net/uploads/2015/10/24/562c19b19826a.jpg', reply_markup=user_markup)
