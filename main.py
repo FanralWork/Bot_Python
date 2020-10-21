@@ -12,7 +12,6 @@ def heandle_start(message):
     user_markup.row("/start", "/stop")
     user_markup.row("Помощь", "Информация о боте")
     user_markup.row("Игры", "Программы")
-    bot.send_message(message.chat.id, "Выбери свой АЙФОН", reply_markup=user_markup)
 
 @bot.message_handler(commands=["stop"])
 def heandle_stop(message):
