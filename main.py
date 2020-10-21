@@ -1,3 +1,5 @@
+from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 import telebot
 bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 
@@ -7,6 +9,17 @@ def handle_text(message):
 чтобы узнать мои команды введи /help""")
     bot.send_photo(message.chat.id, 'http://memok.net/uploads/2015/10/24/562c19b19826a.jpg')
 #Приветствие#
+def heandle_start(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
+    user_markup.row("/start", "/stop")
+    user_markup.row("Помощь", "Информация о боте")
+    user_markup.row("Игры", "Программы")
+    bot.send_message(message.chat.id, "Выбери свой АЙФОН", reply_markup=user_markup)
+
+@bot.message_handler(commands=["stop"])
+def heandle_stop(message):
+    remove_markup = telebot.types.ReplyKeyboardRemove()
+    bot.send_message(message.chat.id,  "Мы закончили?... Ладно...(", reply_markup=remove_markup)
 
 @bot.message_handler(commands=["info"])
 def handle_text(message):
