@@ -8,8 +8,8 @@ def heandle_start(message):
     user_markup.row("Помощь", "Информация о боте")
     user_markup.row("Игры", "Программы")
     bot.send_message(message.chat.id, """Привет я Хоттабыч. Я могу помочь тебе купить игры со скидкой,
-чтобы узнать мои команды введи /help""")
-    bot.send_photo(message.chat.id, 'http://memok.net/uploads/2015/10/24/562c19b19826a.jpg')
+чтобы узнать мои команды введи /help""", reply_markup=user_markup)
+    bot.send_photo(message.chat.id, 'http://memok.net/uploads/2015/10/24/562c19b19826a.jpg', reply_markup=user_markup)
 #Приветствие#
 
 @bot.message_handler(commands=["stop"])
