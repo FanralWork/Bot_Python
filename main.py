@@ -1,4 +1,6 @@
 import telebot
+from telebot import types
+
 bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 
 @bot.message_handler(commands=["start"])
@@ -31,22 +33,18 @@ def handle_text(message):
 
 @bot.message_handler(commands=["games"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Все игры:
-Garry's Mod - 249 рублей""", reply_markup = markup)
-
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton("Купить", callback_data='Link_Buy_Garrys_Mod')
-    item1 = types.InlineKeyboardButton("Перейти в магазин", callback_data='Link_Garrys_Mod')
-
+    item1 = types.InlineKeyboardButton("Купить", callback_data='Link_Buy_GTA_5')
+    item2 = types.InlineKeyboardButton("Перейти в магазин", callback_data='Link_GTA_5')
     markup.add(item1, item2)
-    #Игры#
+    bot.send_message(message.chat.id, text="Все игры: \n GTA 5 - 645 рублей", reply_markup=markup)
 
-
+#Игры#
 
 @bot.message_handler(commands=["programs"])
 def handle_text(message):
-    bot.send_message(message.chat.id, """Все программы:
-GameGuru - 699 рублей - https://store.steampowered.com/app/266310/GameGuru""")
+    bot.send_message(message.chat.id,
+                     "Все программы: \n GameGuru - 699 рублей - https://store.steampowered.com/app/266310/GameGuru")
 #Программы#
 
 @bot.message_handler(content_types=["text"])
@@ -57,23 +55,14 @@ def handle_text(message):
 #Ответ на бред#
 
 @bot.callback_query_handler(func=lambda call: True)
-def callback_inline(call):
+def callbackInline(call):
     try:
         if call.message:
-            if call.data == 'good':
-                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
-            elif call.data == 'bad':
-                bot.send_message(call.message.chat.id, 'Бывает 😢')
-
-            # remove inline buttons
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="😊 Как дела?",
-                reply_markup=None)
-
-            # show alert
-            bot.answer_callback_query(callback_query_id=call.id, show_alert=False,
-                text="ЭТО ТЕСТОВОЕ УВЕДОМЛЕНИЕ!!11")
-
+            if call.data == "Link_Buy_GTA_5":
+                bot.send_message(call.chat.id, "https://zaka-zaka.com/game/grand-theft-auto-v-criminal-enterprise-starter-pack/?agent=#1965376")
+            elif call.data == 'Link_GTA_5':
+                bot.send_message(call.message.chat.id, "https://zaka-zaka.com/?agent=#1965376")
     except Exception as e:
-        print(repr(e))    
+        print(repr(e))
 
 bot.polling(none_stop=True, interval=0)
