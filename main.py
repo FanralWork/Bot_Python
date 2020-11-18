@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
-basket = 0
+basket = []
+summa = int(0)
 
 bot = telebot.TeleBot('1345627871:AAEo4OD-AhQCDWS77DUo_-P7VUz2ZsuXDuo')
 
@@ -20,6 +21,7 @@ def heandle_start(message):
 def heandle_stop(message):
     remove_markup = telebot.types.ReplyKeyboardRemove()
     bot.send_message(message.chat.id, basket, reply_markup=remove_markup)
+    bot.send_message(message.chat.id, summa, reply_markup=remove_markup)
 
 @bot.message_handler(commands=["stop"])
 def heandle_stop(message):
@@ -52,7 +54,7 @@ def handle_text(message):
     bot.send_message(message.chat.id, text="Все игры:")
 
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton("Купить", callback_data='Link_Buy_GTA_5')
+    item1 = types.InlineKeyboardButton("Добавить в корзину", callback_data='Link_Buy_GTA_5')
     item2 = types.InlineKeyboardButton("Перейти в магазин", callback_data='Link_GTA_5')
     markup.add(item1, item2)
     bot.send_message(message.chat.id, text="GTA 5 - 645 рублей", reply_markup=markup)
@@ -78,16 +80,7 @@ def handle_text(message):
     bot.send_message(message.chat.id, text="Чтобы увидеть ещё игры прейди на сайт.", reply_markup=markup)
     #Переход на сайт#
 
-
 # Игры#
-
-# @bot.message_handler(commands=["programs"])
-# def handle_text(message):
-#     bot.send_message(message.chat.id,
-#                      "Все программы: \n GameGuru - 699 рублей - https://store.steampowered.com/app/266310/GameGuru")
-#
-#
-# # Программы#
 
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
@@ -95,7 +88,6 @@ def handle_text(message):
         bot.send_message(message.chat.id, "Приятно познакомится, собрат по разуму")
     else:
         bot.send_message(message.chat.id, "Я не знаю такой команды.")
-
 
 # Ответ на бред#
 
@@ -106,6 +98,9 @@ def callbackInline(call):
             if call.data == "Link_Buy_GTA_5":
                 bot.send_message(call.message.chat.id,
                                  "https://zaka-zaka.com/game/grand-theft-auto-v-criminal-enterprise-starter-pack/?agent=#1965376")
+                # basket + "GTA 5;"
+                # summa + int(645)
+                basket.append("GTA 5;"), summa + int(645)
             elif call.data == 'Link_GTA_5':
                 bot.send_message(call.message.chat.id, "https://zaka-zaka.com/?agent=#1965376")
 
